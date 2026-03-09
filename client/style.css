@@ -11,7 +11,6 @@ body {
     background: linear-gradient(135deg, #e3f2fd, #fce4ec);
     color: #333;
     padding: 30px;
-
 }
 
 /* Header */
@@ -21,7 +20,7 @@ header {
     padding: 25px;
     border-radius: 12px;
     margin-bottom: 25px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 header h1 {
@@ -34,9 +33,10 @@ header p {
 
 /* Layout */
 main {
+    max-width: 850px;
+    margin: 0 auto;
     display: grid;
     gap: 20px;
-    max-width: 850px;
 }
 
 /* Sections */
@@ -44,7 +44,7 @@ section {
     background: white;
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     margin-bottom: 25px;
 }
 
@@ -52,6 +52,129 @@ section {
 section h2 {
     margin-bottom: 12px;
     font-size: 22px;
+}
+
+/* Inputs */
+input {
+    padding: 10px;
+    width: 100%;
+    max-width: 360px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    display: block;
+}
+
+/* Login Section */
+#login-section {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+#login-section button {
+    background: linear-gradient(135deg, #6a1b9a, #1e88e5);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: 14px;
+}
+
+#login-section button:hover {
+    opacity: 0.9;
+}
+
+#login-section button:active {
+    transform: scale(0.97);
+}
+
+#login-message {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #c62828;
+}
+
+/* Signup container and section */
+.signup-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#signup-section {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+#signup-section button {
+    background: #1e88e5;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 14px;
+}
+
+#signup-section button:hover {
+    background: #1565c0;
+    transform: translateY(-1px);
+}
+
+#signup-section button:active {
+    transform: scale(0.98);
+}
+
+#signup-message {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #c62828;
+}
+
+/* Signup / login text */
+.signup-text {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #555;
+}
+
+.signup-text a {
+    color: #1e88e5;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.signup-text a:hover {
+    text-decoration: underline;
+}
+
+/* App Header */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.app-header button {
+    background: #1e88e5;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.app-header button:hover {
+    background: #1565c0;
 }
 
 /* Points Section */
@@ -70,7 +193,7 @@ section h2 {
     border-left: 6px solid #43a047;
 }
 
-/* Buttons */
+/* General Buttons */
 button {
     padding: 10px 15px;
     border: none;
@@ -83,24 +206,24 @@ button {
     color: white;
 }
 
-/* Different button colours */
-button:nth-child(2) {
-    background: #1e88e5; /* Library */
+/* Check-in button colours */
+#checkin-section button:nth-of-type(1) {
+    background: #1e88e5;
 }
 
-button:nth-child(3) {
-    background: #43a047; /* Gym */
+#checkin-section button:nth-of-type(2) {
+    background: #43a047;
 }
 
-button:nth-child(4) {
-    background: #f4511e; /* Student Union */
+#checkin-section button:nth-of-type(3) {
+    background: #f4511e;
 }
 
-button:hover {
+#checkin-section button:hover {
     opacity: 0.9;
 }
 
-button:active {
+#checkin-section button:active {
     transform: scale(0.97);
 }
 
@@ -130,68 +253,30 @@ button:active {
         padding: 15px;
     }
 
-    button {
+    header h1 {
+        font-size: 26px;
+    }
+
+    input {
+        max-width: 100%;
+    }
+
+    #login-section,
+    #signup-section {
+        max-width: 100%;
+    }
+
+    #checkin-section button,
+    #login-section button,
+    #signup-section button,
+    .app-header button {
         width: 100%;
         margin-right: 0;
     }
-}
 
-input {
-    padding: 10px;
-    width: 100%;
-    max-width: 320px;
-    margin-top: 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-#login-message {
-    margin-top: 10px;
-    font-weight: bold;
-    color: #c62828;
-}
-#login-section {
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-#login-section button {
-    background: linear-gradient(135deg, #6a1b9a, #1e88e5);
-    color: white;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-#login-section button:hover {
-    opacity: 0.9;
-}
-
-#login-section button:active {
-    transform: scale(0.97);
-}
-.app-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-}
-
-.app-header button {
-    background: #1e88e5;
-    color: white;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 8px;
-    cursor: pointer;
+    .app-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
 }
