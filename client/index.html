@@ -20,13 +20,35 @@
         <h2>Login</h2>
         <p>Enter your details to continue.</p>
 
-        <input type="text" id="name-input" placeholder="Your name">
         <input type="email" id="email-input" placeholder="University email address">
+        <input type="password" id="password-input" placeholder="Password">
 
         <button type="button" onclick="login()">Login</button>
 
+        <p class="signup-text">
+            Do not have an account? <a href="#" onclick="showSignup()">Sign up</a>
+        </p>
+
         <p id="login-message"></p>
     </section>
+    <div class="signup-container">
+    <section id="signup-section" style="display:none;">
+        <h2>Create Account</h2>
+        <p>Register with your university email.</p>
+
+        <input type="text" id="signup-name" placeholder="Full name">
+        <input type="email" id="signup-email" placeholder="University email address">
+        <input type="password" id="signup-password" placeholder="Password">
+
+        <button type="button" onclick="signup()">Sign Up</button>
+
+        <p class="signup-text">
+            Already have an account? <a href="#" onclick="showLogin()">Login</a>
+        </p>
+
+        <p id="signup-message"></p>
+    </section>
+    </div>
 
     <!-- App Section (hidden until login) -->
     <section id="app-section" style="display:none;">

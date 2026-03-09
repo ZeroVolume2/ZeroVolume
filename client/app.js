@@ -8,24 +8,25 @@ window.onload = function () {
 };
 
 function login() {
-    const name = document.getElementById("name-input").value.trim();
+
     const email = document.getElementById("email-input").value.trim();
+    const password = document.getElementById("password-input").value.trim();
 
-    if (name.length < 2) {
-        document.getElementById("login-message").innerText = "Please enter a valid name.";
+    const storedUser = localStorage.getItem("user_" + email);
+
+    if (!storedUser) {
+        document.getElementById("login-message").innerText = "Account not found. Please sign up.";
         return;
     }
 
-    if (!email.includes("@")) {
-        document.getElementById("login-message").innerText = "Please enter a valid university email address.";
+    const user = JSON.parse(storedUser);
+
+    if (user.password !== password) {
+        document.getElementById("login-message").innerText = "Incorrect password.";
         return;
     }
 
-    currentUser = {
-        name: name,
-        email: email
-    };
-
+    currentUser = user;
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
 
     showApp();
@@ -99,4 +100,47 @@ function checkIn(location) {
     document.getElementById("checkin-message").innerText =
         "Successfully checked in at " + location + "! +10 points earned.";
     document.getElementById("checkin-message").style.color = "#2e7d32";
+}
+function showSignup() {
+    document.getElementById("login-section").style.display = "none";
+    document.getElementById("signup-section").style.display = "block";
+}
+
+function showLogin() {
+    document.getElementById("signup-section").style.display = "none";
+    document.getElementById("login-section").style.display = "block";
+}
+
+function signup() {
+
+    const name = document.getElementById("signup-name").value.trim();
+    const email = document.getElementById("signup-email").value.trim();
+    const password = document.getElementById("signup-password").value.trim();
+
+    if (name.length < 2) {
+        document.getElementById("signup-message").innerText = "Enter your full name.";
+        return;
+    }
+
+    if (!email.includes("@")) {
+        document.getElementById("signup-message").innerText = "Enter a valid university email.";
+        return;
+    }
+
+    if (password.length < 4) {
+        document.getElementById("signup-message").innerText = "Password must be at least 4 characters.";
+        return;
+    }
+
+    const user = {
+        name: name,
+        email: email,
+        password: password
+    };
+
+    localStorage.setItem("user_" + email, JSON.stringify(user));
+
+    document.getElementById("signup-message").innerText = "Account created! Please login.";
+
+    showLogin();
 }
