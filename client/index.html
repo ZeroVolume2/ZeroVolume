@@ -66,12 +66,31 @@
 
         <!-- Check-in Section -->
         <section id="checkin-section">
-            <h2>Check In</h2>
-            <button type="button" onclick="checkIn('library')">Check In at Library</button>
-            <button type="button" onclick="checkIn('gym')">Check In at Gym</button>
-            <button type="button" onclick="checkIn('student_union')">Check In at Student Union</button>
-            <p id="checkin-message"></p>
-        </section>
+    <h2>Check In</h2>
+
+    <div class="facility">
+        <h3>Library</h3>
+        <p>Opening: 08:30 AM</p>
+        <p>Closing: 12:00 AM</p>
+        <button onclick="checkIn('library')">Check In</button>
+    </div>
+
+    <div class="facility">
+        <h3>Gym</h3>
+        <p>Opening: 07:00 AM</p>
+        <p>Closing: 08:00 PM</p>
+        <button onclick="checkIn('gym')">Check In</button>
+    </div>
+
+    <div class="facility">
+        <h3>Student Union</h3>
+        <p>Opening: 09:00 AM</p>
+        <p>Closing: 05:00 PM</p>
+        <button onclick="checkIn('student_union')">Check In</button>
+    </div>
+
+    <p id="checkin-message"></p>
+</section>
 
         <!-- Events Section -->
         <section id="events-section">
