@@ -12,7 +12,7 @@ if (empty($full_name) || empty($university_email) || empty($password)) {
     exit();
 }
 
-$checkSql = "SELECT * FROM users WHERE university_email = ?";
+$checkSql = "SELECT user_id FROM users WHERE university_email = ?";
 $checkStmt = $mysqli->prepare($checkSql);
 $checkStmt->bind_param("s", $university_email);
 $checkStmt->execute();
@@ -23,9 +23,11 @@ if ($checkResult->num_rows > 0) {
     exit();
 }
 
+$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
 $sql = "INSERT INTO users (full_name, university_email, password) VALUES (?, ?, ?)";
 $stmt = $mysqli->prepare($sql);
-$stmt->bind_param("sss", $full_name, $university_email, $password);
+$stmt->bind_param("sss", $full_name, $university_email, $hashedPassword);
 
 if ($stmt->execute()) {
     echo json_encode(["success" => true, "message" => "Account created successfully."]);
