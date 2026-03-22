@@ -2,10 +2,15 @@
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 
-$mysqli = new mysqli("localhost", "2463745", "Arghya@117278", "db2463745");
+include 'config.php';
+
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 if ($mysqli->connect_errno) {
-    echo json_encode(["success" => false, "message" => "Failed to connect to MySQL: " . $mysqli->connect_error]);
+    echo json_encode([
+        "success" => false,
+        "message" => "Failed to connect to MySQL: " . $mysqli->connect_error
+    ]);
     exit();
 }
 ?>
