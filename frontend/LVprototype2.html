@@ -15,96 +15,111 @@
 
     <main>
 
-    <!-- Login Section -->
-    <section id="login-section">
-        <h2>Login</h2>
-        <p>Enter your details to continue.</p>
+        <!-- Login Section -->
+        <section id="login-section">
+            <h2>Login</h2>
+            <p>Enter your details to continue.</p>
 
-        <input type="email" id="email-input" placeholder="University email address">
-        <input type="password" id="password-input" placeholder="Password">
+            <input type="email" id="email-input" placeholder="University email address">
+            <input type="password" id="password-input" placeholder="Password">
 
-        <button type="button" onclick="login()">Login</button>
+            <button type="button" onclick="login()">Login</button>
 
-        <p class="signup-text">
-            Do not have an account? <a href="#" onclick="showSignup()">Sign up</a>
-        </p>
+            <p class="signup-text">
+                Do not have an account? <a href="#" onclick="showSignup()">Sign up</a>
+            </p>
 
-        <p id="login-message"></p>
-    </section>
-    <div class="signup-container">
-    <section id="signup-section" style="display:none;">
-        <h2>Create Account</h2>
-        <p>Register with your university email.</p>
+            <p id="login-message"></p>
+        </section>
 
-        <input type="text" id="signup-name" placeholder="Full name">
-        <input type="email" id="signup-email" placeholder="University email address">
-        <input type="password" id="signup-password" placeholder="Password">
+        <!-- Signup Section -->
+        <div class="signup-container">
+            <section id="signup-section" style="display:none;">
+                <h2>Create Account</h2>
+                <p>Register with your university email.</p>
 
-        <button type="button" onclick="signup()">Sign Up</button>
+                <input type="text" id="signup-name" placeholder="Full name">
+                <input type="email" id="signup-email" placeholder="University email address">
+                <input type="password" id="signup-password" placeholder="Password">
 
-        <p class="signup-text">
-            Already have an account? <a href="#" onclick="showLogin()">Login</a>
-        </p>
+                <button type="button" onclick="signup()">Sign Up</button>
 
-        <p id="signup-message"></p>
-    </section>
-    </div>
+                <p class="signup-text">
+                    Already have an account? <a href="#" onclick="showLogin()">Login</a>
+                </p>
 
-    <!-- App Section (hidden until login) -->
-    <section id="app-section" style="display:none;">
-
-        <div class="app-header">
-            <h2 id="welcome-message">Welcome!</h2>
-            <button type="button" onclick="logout()">Logout</button>
+                <p id="signup-message"></p>
+            </section>
         </div>
 
-        <!-- Points Section -->
-        <section id="points-section">
-            <h2>Your Points</h2>
-            <p id="points-display">Points: 0</p>
+        <!-- App Section -->
+        <section id="app-section" style="display:none;">
+
+            <!-- Notification Section -->
+            <section id="notification-section">
+                <div class="notification-header">
+                    <h2>🔔 Notifications</h2>
+                    <button type="button" onclick="clearNotifications()">Clear All</button>
+                </div>
+
+                <ul id="notification-list">
+                    <li>No notifications yet.</li>
+                </ul>
+            </section>
+
+            <!-- App Header -->
+            <div class="app-header">
+                <h2 id="welcome-message">Welcome!</h2>
+                <button type="button" onclick="logout()">Logout</button>
+            </div>
+
+            <!-- Points Section -->
+            <section id="points-section">
+                <h2>Your Points</h2>
+                <p id="points-display">Points: 0</p>
+            </section>
+
+            <!-- Check-in Section -->
+            <section id="checkin-section">
+                <h2>Check In</h2>
+
+                <div class="facility">
+                    <h3>Library</h3>
+                    <p>Opening: 08:30 AM</p>
+                    <p>Closing: 12:00 AM</p>
+                    <button onclick="checkIn('library')">Check In</button>
+                </div>
+
+                <div class="facility">
+                    <h3>Gym</h3>
+                    <p>Opening: 07:00 AM</p>
+                    <p>Closing: 08:00 PM</p>
+                    <button onclick="checkIn('gym')">Check In</button>
+                </div>
+
+                <div class="facility">
+                    <h3>Student Union</h3>
+                    <p>Opening: 09:00 AM</p>
+                    <p>Closing: 05:00 PM</p>
+                    <button onclick="checkIn('student_union')">Check In</button>
+                </div>
+
+                <p id="checkin-message"></p>
+            </section>
+
+            <!-- Events Section -->
+            <section id="events-section">
+                <h2>Upcoming Events</h2>
+                <ul id="events-list">
+                    <li>Library Study Workshop - 2PM</li>
+                    <li>Basketball Training - 5PM</li>
+                    <li>Music Society Meeting - 6PM</li>
+                </ul>
+            </section>
+
         </section>
 
-        <!-- Check-in Section -->
-        <section id="checkin-section">
-    <h2>Check In</h2>
-
-    <div class="facility">
-        <h3>Library</h3>
-        <p>Opening: 08:30 AM</p>
-        <p>Closing: 12:00 AM</p>
-        <button onclick="checkIn('library')">Check In</button>
-    </div>
-
-    <div class="facility">
-        <h3>Gym</h3>
-        <p>Opening: 07:00 AM</p>
-        <p>Closing: 08:00 PM</p>
-        <button onclick="checkIn('gym')">Check In</button>
-    </div>
-
-    <div class="facility">
-        <h3>Student Union</h3>
-        <p>Opening: 09:00 AM</p>
-        <p>Closing: 05:00 PM</p>
-        <button onclick="checkIn('student_union')">Check In</button>
-    </div>
-
-    <p id="checkin-message"></p>
-</section>
-
-        <!-- Events Section -->
-        <section id="events-section">
-            <h2>Upcoming Events</h2>
-            <ul id="events-list">
-                <li>Library Study Workshop - 2PM</li>
-                <li>Basketball Training - 5PM</li>
-                <li>Music Society Meeting - 6PM</li>
-            </ul>
-        </section>
-
-    </section>
-
-</main>
+    </main>
 
     <script src="app.js"></script>
 </body>

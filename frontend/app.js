@@ -3,7 +3,7 @@ let currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
 window.onload = function () {
     if (currentUser) {
-        showApp();
+        showApp(false);
     }
 };
 
@@ -31,7 +31,7 @@ function login() {
 
         currentUser = data.user;
         localStorage.setItem("currentUser", JSON.stringify(currentUser));
-        showApp();
+        showApp(true);
     })
     .catch(error => {
         document.getElementById("login-message").innerText = "Login failed. Please try again.";
@@ -41,6 +41,10 @@ function login() {
 
 // ====== LOGOUT ======
 function logout() {
+    if (currentUser) {
+        addNotification("You have logged out.");
+    }
+
     localStorage.removeItem("currentUser");
     currentUser = null;
 
@@ -50,7 +54,7 @@ function logout() {
 }
 
 // ====== SHOW APP ======
-function showApp() {
+function showApp(showLoginNotification = false) {
     document.getElementById("welcome-message").innerText =
         "Welcome, " + currentUser.name + " (" + currentUser.email + ")";
 
@@ -59,7 +63,12 @@ function showApp() {
     document.getElementById("app-section").style.display = "block";
 
     updatePointsDisplay(currentUser.points);
+    loadNotifications();
     loadEvents();
+
+    if (showLoginNotification) {
+        addNotification("You have successfully logged in.");
+    }
 }
 
 // ====== SHOW SIGNUP / LOGIN ======
@@ -122,6 +131,7 @@ function signup() {
 
         setTimeout(() => {
             document.getElementById("signup-message").innerText = "";
+            document.getElementById("signup-message").style.color = "";
             showLogin();
         }, 1000);
     })
@@ -147,6 +157,7 @@ function loadEvents() {
 
         if (!Array.isArray(data)) {
             eventsList.innerHTML = "<li>Unable to load events.</li>";
+            addNotification("Unable to load latest campus events.");
             return;
         }
 
@@ -155,10 +166,13 @@ function loadEvents() {
             li.innerHTML = `<strong>${event.event_title}</strong> - ${event.event_location} - ${event.event_time}`;
             eventsList.appendChild(li);
         });
+
+        addNotification("Latest campus events loaded.");
     })
     .catch(error => {
         console.error(error);
         document.getElementById("events-list").innerHTML = "<li>Failed to load events.</li>";
+        addNotification("Failed to load campus events.");
     });
 }
 
@@ -197,12 +211,14 @@ function checkIn(location) {
     if (currentTime < facility.open) {
         message.innerText = facility.name + " opens at " + facility.openText + ". Check-in unavailable.";
         message.style.color = "red";
+        addNotification(facility.name + " is not open yet.");
         return;
     }
 
     if (currentTime >= facility.close) {
         message.innerText = facility.name + " is closed. Check-in unavailable.";
         message.style.color = "red";
+        addNotification(facility.name + " is closed. Check-in unavailable.");
         return;
     }
 
@@ -225,11 +241,69 @@ function checkIn(location) {
             currentUser.points = data.points;
             localStorage.setItem("currentUser", JSON.stringify(currentUser));
             updatePointsDisplay(currentUser.points);
+
+            addNotification("Check-in successful at " + facility.name + ". 10 points added.");
+        } else {
+            addNotification(data.message);
         }
     })
     .catch(error => {
         message.innerText = "Check-in failed. Please try again.";
         message.style.color = "red";
+        addNotification("Check-in failed. Please try again.");
         console.error(error);
     });
+}
+
+// ====== NOTIFICATIONS ======
+function getNotificationKey() {
+    return "notifications_" + currentUser.email;
+}
+
+function loadNotifications() {
+    const notifications = JSON.parse(localStorage.getItem(getNotificationKey())) || [];
+    renderNotifications(notifications);
+}
+
+function addNotification(message) {
+    if (!currentUser) return;
+
+    const notifications = JSON.parse(localStorage.getItem(getNotificationKey())) || [];
+
+    const now = new Date().toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+
+    notifications.unshift(now + " - " + message);
+
+    if (notifications.length > 5) {
+        notifications.pop();
+    }
+
+    localStorage.setItem(getNotificationKey(), JSON.stringify(notifications));
+    renderNotifications(notifications);
+}
+
+function renderNotifications(notifications) {
+    const list = document.getElementById("notification-list");
+    list.innerHTML = "";
+
+    if (notifications.length === 0) {
+        list.innerHTML = "<li>No notifications yet.</li>";
+        return;
+    }
+
+    notifications.forEach(notification => {
+        const li = document.createElement("li");
+        li.innerText = notification;
+        list.appendChild(li);
+    });
+}
+
+function clearNotifications() {
+    if (!currentUser) return;
+
+    localStorage.removeItem(getNotificationKey());
+    renderNotifications([]);
 }
