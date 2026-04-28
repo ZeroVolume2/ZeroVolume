@@ -163,7 +163,7 @@ function loadEvents() {
 
         data.forEach(event => {
             const li = document.createElement("li");
-            li.innerHTML = `<strong>${event.event_title}</strong> - ${event.event_location} - ${event.event_time}`;
+            li.innerHTML = `<strong>${event.event_title}</strong> - ${event.event_location} - ${event.event_date} - ${event.event_time}`;
             eventsList.appendChild(li);
         });
 
@@ -306,4 +306,55 @@ function clearNotifications() {
 
     localStorage.removeItem(getNotificationKey());
     renderNotifications([]);
+}
+// ====ADD EVENT======
+function addEvent() {
+    const title = document.getElementById("event-title-input").value.trim();
+    const location = document.getElementById("event-location-input").value.trim();
+    const date = document.getElementById("event-date-input").value;
+    const time = document.getElementById("event-time-input").value.trim();
+    const description = document.getElementById("event-description-input").value.trim();
+
+    const message = document.getElementById("event-message");
+
+    if (!title || !location || !date || !time) {
+        message.innerText = "Please complete event title, location, date and time.";
+        message.style.color = "red";
+        return;
+    }
+
+    fetch("add_event.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            event_title: title,
+            event_location: location,
+            event_date: date,
+            event_time: time,
+            event_description: description
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        message.innerText = data.message;
+        message.style.color = data.success ? "green" : "red";
+
+        if (data.success) {
+            document.getElementById("event-title-input").value = "";
+            document.getElementById("event-location-input").value = "";
+            document.getElementById("event-date-input").value = "";
+            document.getElementById("event-time-input").value = "";
+            document.getElementById("event-description-input").value = "";
+
+            loadEvents();
+            addNotification("New campus event added: " + title);
+        }
+    })
+    .catch(error => {
+        message.innerText = "Failed to add event.";
+        message.style.color = "red";
+        console.error(error);
+    });
 }

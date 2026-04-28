@@ -315,3 +315,25 @@ button {
 .notification-header button:hover {
     background: #d32f2f;
 }
+
+#admin-event-section {
+    border-left: 6px solid #00897b;
+}
+
+#admin-event-section input {
+    margin-bottom: 8px;
+}
+
+#admin-event-section button {
+    background: #00897b;
+    margin-top: 10px;
+}
+
+#admin-event-section button:hover {
+    background: #00695c;
+}
+
+#event-message {
+    margin-top: 10px;
+    font-weight: bold;
+}
