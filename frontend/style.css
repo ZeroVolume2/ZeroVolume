@@ -8,126 +8,88 @@
 /* Body */
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
-    background: linear-gradient(135deg, #e3f2fd, #fce4ec);
-    color: #333;
+    background: linear-gradient(135deg, #dff3ff, #fce4ec, #f3e5f5);
+    color: #1f2937;
     padding: 30px;
 }
 
 /* Header */
 header {
-    background: linear-gradient(135deg, #1e88e5, #6a1b9a);
+    background: linear-gradient(135deg, #0d8df2, #6a1b9a, #ff6f00);
     color: white;
-    padding: 25px;
-    border-radius: 12px;
-    margin-bottom: 25px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 32px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 12px 30px rgba(106, 27, 154, 0.25);
 }
 
 header h1 {
-    font-size: 32px;
+    font-size: 38px;
+    letter-spacing: -1px;
 }
 
 header p {
-    opacity: 0.9;
+    opacity: 0.95;
+    font-size: 17px;
+    margin-top: 5px;
 }
 
 /* Layout */
 main {
-    max-width: 900px;
+    max-width: 950px;
     margin: 0 auto;
 }
 
 /* Sections */
 section {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    margin-bottom: 25px;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 24px;
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    margin-bottom: 26px;
+    backdrop-filter: blur(8px);
 }
 
 section h2 {
-    margin-bottom: 12px;
-    font-size: 22px;
+    margin-bottom: 14px;
+    font-size: 24px;
+    color: #111827;
 }
 
 /* Inputs */
 input {
-    padding: 10px;
+    padding: 13px;
     width: 100%;
-    max-width: 360px;
-    margin-top: 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
+    max-width: 390px;
+    margin-top: 12px;
+    border-radius: 12px;
+    border: 1px solid #d1d5db;
     display: block;
+    font-size: 15px;
 }
 
-/* Login Section */
-#login-section {
+input:focus {
+    outline: none;
+    border-color: #1e88e5;
+    box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.15);
+}
+
+/* Login / Signup */
+#login-section,
+#signup-section {
     width: 100%;
-    max-width: 500px;
+    max-width: 520px;
     margin: 0 auto;
 }
 
-#login-section button {
-    background: linear-gradient(135deg, #6a1b9a, #1e88e5);
-    color: white;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
-    margin-top: 14px;
-}
-
-#login-section button:hover {
-    opacity: 0.9;
-}
-
-#login-message {
-    margin-top: 10px;
-    font-weight: bold;
-    color: #c62828;
-}
-
-/* Signup */
 .signup-container {
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
-#signup-section {
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-#signup-section button {
-    background: #1e88e5;
-    color: white;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 14px;
-}
-
-#signup-section button:hover {
-    background: #1565c0;
-}
-
-#signup-message {
-    margin-top: 10px;
-    font-weight: bold;
-    color: #c62828;
-}
-
-/* Signup / Login text */
 .signup-text {
-    margin-top: 15px;
+    margin-top: 16px;
     font-size: 14px;
     color: #555;
 }
@@ -135,27 +97,79 @@ input {
 .signup-text a {
     color: #1e88e5;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .signup-text a:hover {
     text-decoration: underline;
 }
 
-/* App Section */
+/* App */
 #app-section {
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
     background: transparent;
     box-shadow: none;
     padding: 0;
 }
 
+/* App Header */
+.app-header {
+    background: linear-gradient(135deg, #ffffff, #eef6ff);
+    padding: 22px;
+    border-radius: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 26px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+/* Buttons */
+button {
+    padding: 11px 17px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 700;
+    color: white;
+    background: linear-gradient(135deg, #1e88e5, #6a1b9a);
+    transition: 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(30, 136, 229, 0.25);
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+/* Messages */
+#login-message,
+#signup-message,
+#checkin-message,
+#event-message {
+    margin-top: 12px;
+    font-weight: bold;
+}
+
 /* Notifications */
 #notification-section {
-    border-left: 6px solid #ff9800;
-    margin-bottom: 25px;
+    border-left: 7px solid #ff9800;
+    background: linear-gradient(135deg, #fffaf0, #ffffff);
+}
+
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.notification-header button {
+    background: linear-gradient(135deg, #ef5350, #c62828);
+    padding: 8px 13px;
+    font-size: 13px;
 }
 
 #notification-list {
@@ -166,98 +180,111 @@ input {
 
 #notification-list li {
     background: #fff3e0;
-    padding: 12px;
-    border-radius: 8px;
+    border-left: 4px solid #ff9800;
+    padding: 13px;
+    border-radius: 12px;
     margin-bottom: 10px;
     font-size: 14px;
     line-height: 1.4;
 }
 
-/* App Header */
-.app-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-}
-
-.app-header button {
-    background: #1e88e5;
-    color: white;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-.app-header button:hover {
-    background: #1565c0;
-}
-
 /* Points */
 #points-section {
-    border-left: 6px solid #1e88e5;
+    border-left: 7px solid #1e88e5;
+    background: linear-gradient(135deg, #ffffff, #eaf5ff);
 }
 
 #points-display {
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 24px;
+    font-weight: 800;
     color: #1e88e5;
 }
 
 /* Check-in */
 #checkin-section {
-    border-left: 6px solid #43a047;
-}
-
-#checkin-message {
-    margin-top: 12px;
-    font-weight: bold;
-}
-
-/* General Buttons */
-button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    color: white;
+    border-left: 7px solid #43a047;
+    background: linear-gradient(135deg, #ffffff, #effaf0);
 }
 
 /* Facility Cards */
 .facility {
-    border: 1px solid #eee;
-    padding: 15px;
-    border-radius: 10px;
-    margin-top: 15px;
+    border: 1px solid #e5e7eb;
+    padding: 18px;
+    border-radius: 16px;
+    margin-top: 16px;
+    background: #ffffff;
+    transition: 0.2s ease;
+}
+
+.facility:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.08);
 }
 
 .facility h3 {
-    margin-bottom: 5px;
+    margin-bottom: 7px;
+    color: #111827;
+}
+
+.facility p {
+    color: #4b5563;
+    margin-bottom: 3px;
 }
 
 .facility button {
-    background: #1e88e5;
-    margin-top: 10px;
+    margin-top: 12px;
+    background: linear-gradient(135deg, #1e88e5, #1565c0);
 }
 
-.facility button:hover {
-    background: #1565c0;
+/* Admin Event Section */
+#admin-event-section {
+    border-left: 7px solid #00897b;
+    background: linear-gradient(135deg, #ffffff, #e0f7f4);
+}
+
+#admin-event-section input {
+    margin-bottom: 8px;
+}
+
+#admin-event-section button {
+    background: linear-gradient(135deg, #00897b, #00695c);
 }
 
 /* Events */
 #events-section {
-    border-left: 6px solid #6a1b9a;
+    border-left: 7px solid #6a1b9a;
+    background: linear-gradient(135deg, #ffffff, #f3e5f5);
 }
 
 #events-list {
-    padding-left: 18px;
+    padding-left: 20px;
     margin-top: 10px;
 }
 
 #events-list li {
-    margin-bottom: 6px;
+    margin-bottom: 9px;
+    line-height: 1.5;
+}
+
+/* Navigation */
+#navigation-section {
+    border-left: 7px solid #fb8c00;
+    background: linear-gradient(135deg, #ffffff, #fff3e0);
+}
+
+.navigation-banner {
+    width: 100%;
+    margin-bottom: 18px;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+}
+
+.navigation-banner img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    display: block;
 }
 
 /* Mobile */
@@ -266,17 +293,15 @@ button {
         padding: 15px;
     }
 
+    header {
+        padding: 24px;
+    }
+
     header h1 {
-        font-size: 26px;
+        font-size: 29px;
     }
 
     input {
-        max-width: 100%;
-    }
-
-    #login-section,
-    #signup-section,
-    #app-section {
         max-width: 100%;
     }
 
@@ -286,6 +311,7 @@ button {
         gap: 12px;
     }
 
+    button,
     #checkin-section button,
     #login-section button,
     #signup-section button,
@@ -293,47 +319,9 @@ button {
     .facility button {
         width: 100%;
     }
-}
-.notification-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-}
 
-.notification-header button {
-    background: #ef5350;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: bold;
-}
-
-.notification-header button:hover {
-    background: #d32f2f;
-}
-
-#admin-event-section {
-    border-left: 6px solid #00897b;
-}
-
-#admin-event-section input {
-    margin-bottom: 8px;
-}
-
-#admin-event-section button {
-    background: #00897b;
-    margin-top: 10px;
-}
-
-#admin-event-section button:hover {
-    background: #00695c;
-}
-
-#event-message {
-    margin-top: 10px;
-    font-weight: bold;
+    .notification-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }

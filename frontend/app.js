@@ -358,3 +358,21 @@ function addEvent() {
         console.error(error);
     });
 }
+
+function openNavigation(type) {
+    const routes = {
+        bus: "https://maps.app.goo.gl/78NmwDQ6SJqvUpXU7",
+        tram: "https://www.google.com/maps/search/nearest+tram+stop+near+University+of+Wolverhampton",
+        train: "https://maps.app.goo.gl/oV1CH3vqJjyoDSwN7"
+    };
+
+    window.open(routes[type], "_blank");
+
+    const labels = {
+        bus: "bus stop",
+        tram: "tram stop",
+        train: "train station"
+    };
+
+    addNotification("Opened navigation for nearest " + labels[type] + ".");
+}
