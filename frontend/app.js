@@ -376,3 +376,35 @@ function openNavigation(type) {
 
     addNotification("Opened navigation for nearest " + labels[type] + ".");
 }
+
+function showDashboardPage(page) {
+    const homePage = document.getElementById("home-page");
+    const roomsPage = document.getElementById("rooms-page");
+
+    if (page === "home") {
+        homePage.style.display = "block";
+        roomsPage.style.display = "none";
+        addNotification("Home page opened.");
+    }
+
+    if (page === "rooms") {
+        homePage.style.display = "none";
+        roomsPage.style.display = "block";
+        addNotification("Room Availability page opened.");
+    }
+}
+
+function bookStudyRoom(roomName) {
+    const message = document.getElementById("study-room-message");
+
+    if (roomName === "Computer Lab Room C") {
+        message.innerText = roomName + " is currently unavailable.";
+        message.style.color = "red";
+        addNotification(roomName + " is unavailable for booking.");
+        return;
+    }
+
+    message.innerText = roomName + " has been booked successfully.";
+    message.style.color = "green";
+    addNotification("Study room booked: " + roomName);
+}
