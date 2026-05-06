@@ -67,80 +67,123 @@
                 </ul>
             </section>
 
-            <!-- App Header -->
-            <div class="app-header">
-                <h2 id="welcome-message">Welcome!</h2>
-                <button type="button" onclick="logout()">Logout</button>
+            <!-- Page Tabs -->
+            <div class="page-tabs">
+                <button type="button" onclick="showDashboardPage('home')">Home</button>
+                <button type="button" onclick="showDashboardPage('rooms')">Room Availability</button>
             </div>
 
-            <!-- Points Section -->
-            <section id="points-section">
-                <h2>Your Points</h2>
-                <p id="points-display">Points: 0</p>
-            </section>
+            <!-- Home Page -->
+            <div id="home-page">
 
-            <!-- Check-in Section -->
-            <section id="checkin-section">
-                <h2>Check In</h2>
-
-                <div class="facility">
-                    <h3>Library</h3>
-                    <p>Opening: 08:30 AM</p>
-                    <p>Closing: 12:00 AM</p>
-                    <button type="button" onclick="checkIn('library')">Check In</button>
+                <!-- App Header -->
+                <div class="app-header">
+                    <h2 id="welcome-message">Welcome!</h2>
+                    <button type="button" onclick="logout()">Logout</button>
                 </div>
 
-                <div class="facility">
-                    <h3>Gym</h3>
-                    <p>Opening: 07:00 AM</p>
-                    <p>Closing: 08:00 PM</p>
-                    <button type="button" onclick="checkIn('gym')">Check In</button>
-                </div>
+                <!-- Points Section -->
+                <section id="points-section">
+                    <h2>Your Points</h2>
+                    <p id="points-display">Points: 0</p>
+                </section>
 
-                <div class="facility">
-                    <h3>Student Union</h3>
-                    <p>Opening: 09:00 AM</p>
-                    <p>Closing: 05:00 PM</p>
-                    <button type="button" onclick="checkIn('student_union')">Check In</button>
-                </div>
+                <!-- Check-in Section -->
+                <section id="checkin-section">
+                    <h2>Check In</h2>
 
-                <p id="checkin-message"></p>
-            </section>
+                    <div class="facility">
+                        <h3>Library</h3>
+                        <p>Opening: 08:30 AM</p>
+                        <p>Closing: 12:00 AM</p>
+                        <button type="button" onclick="checkIn('library')">Check In</button>
+                    </div>
 
-            <section id="navigation-section">
-    <div class="navigation-banner">
-        <img src="map.png" alt="Campus Navigation">
-    </div>
+                    <div class="facility">
+                        <h3>Gym</h3>
+                        <p>Opening: 07:00 AM</p>
+                        <p>Closing: 08:00 PM</p>
+                        <button type="button" onclick="checkIn('gym')">Check In</button>
+                    </div>
 
-    <h2>Campus Navigation</h2>
+                    <div class="facility">
+                        <h3>Student Union</h3>
+                        <p>Opening: 09:00 AM</p>
+                        <p>Closing: 05:00 PM</p>
+                        <button type="button" onclick="checkIn('student_union')">Check In</button>
+                    </div>
 
-    <div class="facility">
-        <h3>Nearest Bus Stop</h3>
-        <p>Find the closest bus stop near campus.</p>
-        <button type="button" onclick="openNavigation('bus')">Open Bus Route</button>
-    </div>
+                    <p id="checkin-message"></p>
+                </section>
 
-    <div class="facility">
-        <h3>Nearest Tram Stop(For Birmingham Only)</h3>
-        <p>Find the closest tram stop near campus.</p>
-        <button type="button" onclick="openNavigation('tram')">Open Tram Route</button>
-    </div>
+                <!-- Navigation Section -->
+                <section id="navigation-section">
+                    <div class="navigation-banner">
+                        <img src="map.png" alt="Campus Navigation">
+                    </div>
 
-    <div class="facility">
-        <h3>Nearest Train Station</h3>
-        <p>Find the closest train station near campus.</p>
-        <button type="button" onclick="openNavigation('train')">Open Train Route</button>
-    </div>
-</section>
+                    <h2>Campus Navigation</h2>
 
+                    <div class="facility">
+                        <h3>Nearest Bus Stop</h3>
+                        <p>Find the closest bus stop near campus.</p>
+                        <button type="button" onclick="openNavigation('bus')">Open Bus Route</button>
+                    </div>
 
-            <!-- Events Section -->
-            <section id="events-section">
-                <h2>Upcoming Events</h2>
-                <ul id="events-list">
-                    <li>Loading events...</li>
-                </ul>
-            </section>
+                    <div class="facility">
+                        <h3>Nearest Tram Stop (For Birmingham Only)</h3>
+                        <p>Find the closest tram stop near campus.</p>
+                        <button type="button" onclick="openNavigation('tram')">Open Tram Route</button>
+                    </div>
+
+                    <div class="facility">
+                        <h3>Nearest Train Station</h3>
+                        <p>Find the closest train station near campus.</p>
+                        <button type="button" onclick="openNavigation('train')">Open Train Route</button>
+                    </div>
+                </section>
+
+                <!-- Events Section -->
+                <section id="events-section">
+                    <h2>Upcoming Events</h2>
+                    <ul id="events-list">
+                        <li>Loading events...</li>
+                    </ul>
+                </section>
+
+            </div>
+
+            <!-- Room Availability Page -->
+            <div id="rooms-page" style="display:none;">
+
+                <section id="study-room-section">
+                    <h2>Study Room Availability</h2>
+
+                    <div class="facility">
+                        <h3>Library Study Room A</h3>
+                        <p>Status: <span class="available">Available</span></p>
+                        <p>Capacity: 6 students</p>
+                        <button type="button" onclick="bookStudyRoom('Library Study Room A')">Book Room</button>
+                    </div>
+
+                    <div class="facility">
+                        <h3>Quiet Study Room B</h3>
+                        <p>Status: <span class="limited">Limited Spaces</span></p>
+                        <p>Capacity: 4 students</p>
+                        <button type="button" onclick="bookStudyRoom('Quiet Study Room B')">Book Room</button>
+                    </div>
+
+                    <div class="facility">
+                        <h3>Computer Lab Room C</h3>
+                        <p>Status: <span class="unavailable">Unavailable</span></p>
+                        <p>Capacity: 20 students</p>
+                        <button type="button" onclick="bookStudyRoom('Computer Lab Room C')">Book Room</button>
+                    </div>
+
+                    <p id="study-room-message"></p>
+                </section>
+
+            </div>
 
         </section>
 
