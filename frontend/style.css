@@ -433,3 +433,23 @@ button:active {
     object-fit: contain;
     margin-bottom: 10px;
 }
+
+.student-avatar img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.photo-upload-box {
+    margin: 0 24px 20px;
+}
+
+.photo-upload-box input {
+    margin-bottom: 10px;
+}
+
+#photo-upload-message {
+    margin-top: 10px;
+    font-weight: bold;
+}

@@ -434,4 +434,51 @@ function loadStudentId() {
             "Email: " + currentUser.email + " | " +
             "Student ID: " + studentId
         );
+
+    const studentPhoto = document.getElementById("student-photo");
+
+    if (currentUser.profile_photo) {
+        studentPhoto.src = currentUser.profile_photo;
+    } else {
+        studentPhoto.src = "https://via.placeholder.com/120?text=Photo";
+    }
+}
+
+function uploadStudentPhoto() {
+    const photoInput = document.getElementById("student-photo-input");
+    const message = document.getElementById("photo-upload-message");
+
+    if (!photoInput.files.length) {
+        message.innerText = "Please select a photo.";
+        message.style.color = "red";
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("user_id", currentUser.user_id);
+    formData.append("photo", photoInput.files[0]);
+
+    fetch("upload_photo.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        message.innerText = data.message;
+        message.style.color = data.success ? "green" : "red";
+
+        if (data.success) {
+            currentUser.profile_photo = data.photo_path;
+            localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+            document.getElementById("student-photo").src = data.photo_path;
+
+            addNotification("Student ID photo updated successfully.");
+        }
+    })
+    .catch(error => {
+        message.innerText = "Photo upload failed.";
+        message.style.color = "red";
+        console.error(error);
+    });
 }
