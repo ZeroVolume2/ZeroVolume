@@ -360,3 +360,76 @@ button:active {
     margin-top: 12px;
     font-weight: bold;
 }
+.show-id-btn {
+    margin-top: 12px;
+    background: linear-gradient(135deg, #8e24aa, #3949ab);
+}
+
+#student-id-section {
+    border-left: 7px solid #8e24aa;
+    background: linear-gradient(135deg, #ffffff, #f3e5f5);
+}
+
+.student-card {
+    max-width: 520px;
+    margin: 0 auto;
+    border-radius: 22px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 12px 30px rgba(106, 27, 154, 0.2);
+    border: 1px solid #e5e7eb;
+    padding-bottom: 20px;
+}
+
+.student-card-header {
+    background: linear-gradient(135deg, #1e88e5, #6a1b9a);
+    color: white;
+    padding: 22px;
+}
+
+.student-card-header h3 {
+    margin-bottom: 5px;
+    font-size: 22px;
+}
+
+.student-card-body {
+    display: flex;
+    gap: 20px;
+    padding: 24px;
+    align-items: center;
+}
+
+.student-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 42px;
+}
+
+.student-info p {
+    margin-bottom: 8px;
+}
+
+.qr-box {
+    margin: 0 24px 20px;
+    border: 2px dashed #6a1b9a;
+    border-radius: 16px;
+    padding: 18px;
+    text-align: center;
+    color: #6a1b9a;
+    font-weight: bold;
+}
+
+.qr-box p {
+    font-size: 32px;
+}
+.qr-box img {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}

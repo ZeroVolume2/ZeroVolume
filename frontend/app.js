@@ -380,17 +380,26 @@ function openNavigation(type) {
 function showDashboardPage(page) {
     const homePage = document.getElementById("home-page");
     const roomsPage = document.getElementById("rooms-page");
+    const studentIdPage = document.getElementById("student-id-page");
+
+    homePage.style.display = "none";
+    roomsPage.style.display = "none";
+    studentIdPage.style.display = "none";
 
     if (page === "home") {
         homePage.style.display = "block";
-        roomsPage.style.display = "none";
         addNotification("Home page opened.");
     }
 
     if (page === "rooms") {
-        homePage.style.display = "none";
         roomsPage.style.display = "block";
         addNotification("Room Availability page opened.");
+    }
+
+    if (page === "studentId") {
+        studentIdPage.style.display = "block";
+        loadStudentId();
+        addNotification("Digital Student ID opened.");
     }
 }
 
@@ -407,4 +416,22 @@ function bookStudyRoom(roomName) {
     message.innerText = roomName + " has been booked successfully.";
     message.style.color = "green";
     addNotification("Study room booked: " + roomName);
+}
+
+function loadStudentId() {
+    if (!currentUser) return;
+
+    const studentId = "WLV-" + currentUser.user_id.toString().padStart(6, "0");
+
+    document.getElementById("student-id-name").innerText = currentUser.name;
+    document.getElementById("student-id-email").innerText = currentUser.email;
+    document.getElementById("student-id-number").innerText = studentId;
+
+    document.getElementById("student-qr").src =
+        "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" +
+        encodeURIComponent(
+            "Name: " + currentUser.name + " | " +
+            "Email: " + currentUser.email + " | " +
+            "Student ID: " + studentId
+        );
 }

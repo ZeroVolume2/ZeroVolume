@@ -78,9 +78,15 @@
 
                 <!-- App Header -->
                 <div class="app-header">
-                    <h2 id="welcome-message">Welcome!</h2>
-                    <button type="button" onclick="logout()">Logout</button>
+                    <div>
+                        <h2 id="welcome-message">Welcome!</h2>
+                        <button type="button" class="show-id-btn" onclick="showDashboardPage('studentId')">
+                            Show ID
+                        </button>
                 </div>
+
+                <button type="button" onclick="logout()">Logout</button>
+            </div>
 
                 <!-- Points Section -->
                 <section id="points-section">
@@ -181,6 +187,44 @@
                     </div>
 
                     <p id="study-room-message"></p>
+                </section>
+
+            </div>
+
+            <!-- Student ID Page -->
+            <div id="student-id-page" style="display:none;">
+
+                <section id="student-id-section">
+                    <h2>Digital Student ID</h2>
+
+                    <div class="student-card">
+
+                        <div class="student-card-header">
+                            <h3>University of Wolverhampton</h3>
+                            <p>Digital Student Identification</p>
+                        </div>
+
+                        <div class="student-card-body">
+                            <div class="student-avatar">🎓</div>
+
+                            <div class="student-info">
+                                <p><strong>Name:</strong> <span id="student-id-name">Student Name</span></p>
+                                <p><strong>Email:</strong> <span id="student-id-email">student@email.com</span></p>
+                                <p><strong>Student ID:</strong> <span id="student-id-number">WLV-2026-001</span></p>
+                                <p><strong>Status:</strong> <span class="available">Active Student</span></p>
+                            </div>
+                        </div>
+
+                        <div class="qr-box">
+                            <img id="student-qr" src="" alt="Student QR Code">
+                            <small>Scan for verification</small>
+                        </div>
+
+                        <button type="button" class="back-id-btn" onclick="showDashboardPage('home')">
+                            Back to Home
+                        </button>
+
+                    </div>
                 </section>
 
             </div>
