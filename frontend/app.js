@@ -2,6 +2,8 @@
 let currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
 window.onload = function () {
+    loadDarkModePreference();
+
     if (currentUser) {
         showApp(false);
     }
@@ -161,6 +163,11 @@ function loadEvents() {
             return;
         }
 
+        if (data.length === 0) {
+            eventsList.innerHTML = "<li>No upcoming events available.</li>";
+            return;
+        }
+
         data.forEach(event => {
             const li = document.createElement("li");
             li.innerHTML = `<strong>${event.event_title}</strong> - ${event.event_location} - ${event.event_date} - ${event.event_time}`;
@@ -243,6 +250,7 @@ function checkIn(location) {
             updatePointsDisplay(currentUser.points);
 
             addNotification("Check-in successful at " + facility.name + ". 10 points added.");
+            saveAttendanceRecord(facility.name);
         } else {
             addNotification(data.message);
         }
@@ -252,6 +260,59 @@ function checkIn(location) {
         message.style.color = "red";
         addNotification("Check-in failed. Please try again.");
         console.error(error);
+    });
+}
+
+// ====== ATTENDANCE HISTORY ======
+function getAttendanceKey() {
+    return "attendance_" + currentUser.email;
+}
+
+function saveAttendanceRecord(locationName) {
+    if (!currentUser) return;
+
+    const history = JSON.parse(localStorage.getItem(getAttendanceKey())) || [];
+    const now = new Date();
+
+    const record = {
+        location: locationName,
+        date: now.toLocaleDateString(),
+        time: now.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit"
+        }),
+        points: 10
+    };
+
+    history.unshift(record);
+
+    if (history.length > 10) {
+        history.pop();
+    }
+
+    localStorage.setItem(getAttendanceKey(), JSON.stringify(history));
+}
+
+function loadAttendanceHistory() {
+    const attendanceList = document.getElementById("attendance-list");
+    const history = JSON.parse(localStorage.getItem(getAttendanceKey())) || [];
+
+    attendanceList.innerHTML = "";
+
+    if (history.length === 0) {
+        attendanceList.innerHTML = "<li>No attendance records yet.</li>";
+        return;
+    }
+
+    history.forEach(record => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+            <strong>${record.location}</strong><br>
+            Date: ${record.date}<br>
+            Time: ${record.time}<br>
+            Points Earned: ${record.points}
+        `;
+        attendanceList.appendChild(li);
     });
 }
 
@@ -307,7 +368,8 @@ function clearNotifications() {
     localStorage.removeItem(getNotificationKey());
     renderNotifications([]);
 }
-// ====ADD EVENT======
+
+// ====== ADD EVENT ======
 function addEvent() {
     const title = document.getElementById("event-title-input").value.trim();
     const location = document.getElementById("event-location-input").value.trim();
@@ -359,6 +421,7 @@ function addEvent() {
     });
 }
 
+// ====== NAVIGATION ======
 function openNavigation(type) {
     const routes = {
         bus: "https://maps.app.goo.gl/78NmwDQ6SJqvUpXU7",
@@ -377,14 +440,17 @@ function openNavigation(type) {
     addNotification("Opened navigation for nearest " + labels[type] + ".");
 }
 
+// ====== PAGE SWITCHING ======
 function showDashboardPage(page) {
     const homePage = document.getElementById("home-page");
     const roomsPage = document.getElementById("rooms-page");
     const studentIdPage = document.getElementById("student-id-page");
+    const attendancePage = document.getElementById("attendance-page");
 
     homePage.style.display = "none";
     roomsPage.style.display = "none";
     studentIdPage.style.display = "none";
+    attendancePage.style.display = "none";
 
     if (page === "home") {
         homePage.style.display = "block";
@@ -401,8 +467,15 @@ function showDashboardPage(page) {
         loadStudentId();
         addNotification("Digital Student ID opened.");
     }
+
+    if (page === "attendance") {
+        attendancePage.style.display = "block";
+        loadAttendanceHistory();
+        addNotification("Attendance History page opened.");
+    }
 }
 
+// ====== STUDY ROOM ======
 function bookStudyRoom(roomName) {
     const message = document.getElementById("study-room-message");
 
@@ -418,6 +491,7 @@ function bookStudyRoom(roomName) {
     addNotification("Study room booked: " + roomName);
 }
 
+// ====== STUDENT ID ======
 function loadStudentId() {
     if (!currentUser) return;
 
@@ -482,8 +556,8 @@ function uploadStudentPhoto() {
         console.error(error);
     });
 }
-// ===== DARK MODE =====
 
+// ====== DARK MODE ======
 function toggleDarkMode() {
     document.body.classList.toggle("dark-mode");
 
@@ -496,11 +570,10 @@ function toggleDarkMode() {
     }
 }
 
-// Load dark mode preference
-window.addEventListener("load", () => {
+function loadDarkModePreference() {
     const darkMode = localStorage.getItem("darkMode");
 
     if (darkMode === "enabled") {
         document.body.classList.add("dark-mode");
     }
-});
+}

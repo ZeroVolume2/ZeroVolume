@@ -71,6 +71,9 @@
             <div class="page-tabs">
                 <button type="button" onclick="showDashboardPage('home')">Home</button>
                 <button type="button" onclick="showDashboardPage('rooms')">Room Availability</button>
+                <button type="button" onclick="showDashboardPage('attendance')">
+                    Attendance History
+                </button>
             </div>
 
             <!-- Home Page -->
@@ -204,6 +207,23 @@
                     </div>
 
                     <p id="study-room-message"></p>
+                </section>
+
+            </div>
+
+            <!-- ATTENDANCE HISTORY PAGE -->
+            <div id="attendance-page" style="display:none;">
+
+                <section id="attendance-section">
+                    <h2>Attendance History</h2>
+
+                    <p class="attendance-summary">
+                        View your recent campus check-ins and activity points.
+                    </p>
+
+                    <ul id="attendance-list">
+                        <li>No attendance records yet.</li>
+                    </ul>
                 </section>
 
             </div>

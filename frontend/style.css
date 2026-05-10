@@ -501,3 +501,26 @@ button:active {
 .dark-mode a {
     color: #90caf9;
 }
+#attendance-section {
+    border-left: 7px solid #00acc1;
+    background: linear-gradient(135deg, #ffffff, #e0f7fa);
+}
+
+.attendance-summary {
+    margin-bottom: 15px;
+    color: #4b5563;
+}
+
+#attendance-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+#attendance-list li {
+    background: #ffffff;
+    border-left: 5px solid #00acc1;
+    padding: 14px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
