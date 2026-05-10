@@ -482,3 +482,25 @@ function uploadStudentPhoto() {
         console.error(error);
     });
 }
+// ===== DARK MODE =====
+
+function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+
+    if (document.body.classList.contains("dark-mode")) {
+        localStorage.setItem("darkMode", "enabled");
+        addNotification("Dark mode enabled.");
+    } else {
+        localStorage.setItem("darkMode", "disabled");
+        addNotification("Light mode enabled.");
+    }
+}
+
+// Load dark mode preference
+window.addEventListener("load", () => {
+    const darkMode = localStorage.getItem("darkMode");
+
+    if (darkMode === "enabled") {
+        document.body.classList.add("dark-mode");
+    }
+});
